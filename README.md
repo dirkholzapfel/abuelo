@@ -26,6 +26,9 @@ graph.find_edge(node_1, node_2)  # => edge_1
 graph.edges_for_node(node_2)     # => [edge_2]
 ```
 
+## Documentation
+[YARD](http://yardoc.org) documentation is available at [rubydoc](http://www.rubydoc.info/gems/abuelo).
+
 ## Future
 * Implement graph algorithms
   * [Kruskal's algorithm](https://en.wikipedia.org/wiki/Kruskal%27s_algorithm)
@@ -50,3 +53,5 @@ Dirk Holzapfel
 [cachezero.net](http://cachezero.net)
 
 [bitcrowd.net](http://bitcrowd.net)
+
+[Abuelo](http://www.ronabuelopanama.com)
