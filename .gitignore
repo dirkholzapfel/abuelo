@@ -1,0 +1,7 @@
+*~
+.bundle
+.yardoc
+doc/*
+pkg
+log
+test/tmp/*
