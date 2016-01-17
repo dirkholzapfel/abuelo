@@ -1,4 +1,6 @@
 # Abuelo
+[![Build Status](https://travis-ci.org/dirkholzapfel/abuelo.svg?branch=master)](https://travis-ci.org/dirkholzapfel/abuelo)
+
 Abuelo is a graph theory library that allows you to build a representation of a directed graph with its nodes and edges.
 
 ## Examples
