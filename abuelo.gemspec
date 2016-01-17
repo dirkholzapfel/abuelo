@@ -1,6 +1,9 @@
+$:.push File.expand_path("../lib", __FILE__)
+require 'abuelo/version'
+
 Gem::Specification.new do |spec|
-  spec.name        = 'abuelo'
-  spec.version     = '0.0.1'
+  spec.name        = 'Abuelo'
+  spec.version     = Abuelo::VERSION
   spec.date        = '2016-01-10'
   spec.summary     = "Abuelo"
   spec.description = "Abuelo is a graph theory library."
