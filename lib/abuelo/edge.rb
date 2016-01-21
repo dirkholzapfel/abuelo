@@ -32,7 +32,7 @@ module Abuelo
     #
     # @return [Abuelo::Edge] a new edge with same weight but reversed start- and end-node.
     # 
-    def opposite
+    def symmetric
       Abuelo::Edge.new(node_2, node_1, weight)
     end
 

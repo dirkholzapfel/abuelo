@@ -21,12 +21,12 @@ RSpec.describe Abuelo::Edge do
     end
   end
 
-  describe '#opposite' do
+  describe '#symmetric' do
     it 'returns an edge object with the same weight, but reversed nodes' do
-      opposite = edge.opposite
-      expect(opposite.node_1).to eq edge.node_2
-      expect(opposite.node_2).to eq edge.node_1
-      expect(opposite.weight).to eq edge.weight
+      symmetric = edge.symmetric
+      expect(symmetric.node_1).to eq edge.node_2
+      expect(symmetric.node_2).to eq edge.node_1
+      expect(symmetric.weight).to eq edge.weight
     end
   end
 
