@@ -6,13 +6,12 @@ module Abuelo
   # @author Dirk Holzapfel <dirk@bitcrowd.net>
   #
   class Edge
-    
     # @return [Abuelo::Node] start-node
     attr_reader :node_1
 
     # @return [Abuelo::Node] end-node
     attr_reader :node_2
-    
+
     # @return [Numeric] weight
     attr_reader :weight
 
@@ -22,7 +21,7 @@ module Abuelo
     # @param [Abuelo::Node] node_1 start-node
     # @param [Abuelo::Node] node_2 end-node
     # @param [Numeric] weight of the edge
-    # 
+    #
     def initialize(node_1, node_2, weight = 0)
       @node_1 = node_1
       @node_2 = node_2
@@ -31,7 +30,7 @@ module Abuelo
 
     #
     # @return [Abuelo::Edge] a new edge with same weight but reversed start- and end-node.
-    # 
+    #
     def symmetric
       Abuelo::Edge.new(node_2, node_1, weight)
     end
@@ -42,9 +41,9 @@ module Abuelo
     # @param [Abuelo::Edge] other_edge
     #
     # @return [-1, 0, +1 or ni]
-    # 
+    #
     def <=>(other_edge)
-      self.weight <=> other_edge.weight
+      weight <=> other_edge.weight
     end
 
     #
@@ -53,19 +52,18 @@ module Abuelo
     # @param [Abuelo::Edge] other_edge
     #
     # @return [Boolean] true if start-, end-node and weight of both edges are equal
-    # 
+    #
     def ==(other_edge)
-      self.node_1 == other_edge.node_1 &&
-      self.node_2 == other_edge.node_2 &&
-      self.weight == other_edge.weight
+      node_1 == other_edge.node_1 &&
+        node_2 == other_edge.node_2 &&
+        weight == other_edge.weight
     end
 
     #
     # @return [String] human readable representation of edge
-    # 
+    #
     def to_s
-      "#{node_1.to_s} -> #{node_2.to_s} with weight #{weight}"
+      "#{node_1} -> #{node_2} with weight #{weight}"
     end
-
   end
 end

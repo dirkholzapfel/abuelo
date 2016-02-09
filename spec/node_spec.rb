@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 RSpec.describe Abuelo::Node do
-
   let(:node) { described_class.new('node 1') }
 
   context 'initialization' do
