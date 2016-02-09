@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 RSpec.describe Abuelo::Graph do
-
   let(:node_1) { Abuelo::Node.new('node 1') }
   let(:node_2) { Abuelo::Node.new('node 2') }
   let(:node_3) { Abuelo::Node.new('node 3') }
@@ -10,20 +9,20 @@ RSpec.describe Abuelo::Graph do
 
   let(:directed_graph) do
     described_class.new(directed: true)
-      .add_node(node_1)
-      .add_node(node_2)
-      .add_node(node_3)
-      .add_edge(edge_1)
-      .add_edge(edge_2)
+                   .add_node(node_1)
+                   .add_node(node_2)
+                   .add_node(node_3)
+                   .add_edge(edge_1)
+                   .add_edge(edge_2)
   end
 
   let(:undirected_graph) do
     described_class.new
-      .add_node(node_1)
-      .add_node(node_2)
-      .add_node(node_3)
-      .add_edge(edge_1)
-      .add_edge(edge_2)
+                   .add_node(node_1)
+                   .add_node(node_2)
+                   .add_node(node_3)
+                   .add_edge(edge_1)
+                   .add_edge(edge_2)
   end
 
   context 'directed graph' do
@@ -62,9 +61,9 @@ RSpec.describe Abuelo::Graph do
         it 'adds the node to the graph' do
           new_node = Abuelo::Node.new('node 4')
 
-          expect{
+          expect do
             directed_graph.add_node(new_node)
-          }.to change{ directed_graph.nodes.count }.by 1
+          end.to change { directed_graph.nodes.count }.by 1
 
           expect(directed_graph.has_node?(new_node)).to be true
         end
@@ -72,17 +71,17 @@ RSpec.describe Abuelo::Graph do
         it 'raises an error if a node with the same name in the graph exists' do
           new_node = Abuelo::Node.new('node 1')
 
-          expect{
+          expect do
             directed_graph.add_node(new_node)
-          }.to raise_error(Abuelo::Exceptions::NodeAlreadyExistsError)
+          end.to raise_error(Abuelo::Exceptions::NodeAlreadyExistsError)
         end
 
         it 'sets the graph of the node to itself' do
           new_node = Abuelo::Node.new('node 4')
 
-          expect{
+          expect do
             directed_graph.add_node(new_node)
-          }.to change{ new_node.graph }.to(directed_graph)
+          end.to change { new_node.graph }.to(directed_graph)
         end
       end
 
@@ -108,7 +107,6 @@ RSpec.describe Abuelo::Graph do
       end
     end
 
-
     context 'edges' do
       describe '#edges' do
         it 'returns the edges of the graph' do
@@ -120,9 +118,9 @@ RSpec.describe Abuelo::Graph do
         it 'adds the edge to the graph' do
           new_edge = Abuelo::Edge.new(node_2, node_1, 23)
 
-          expect{
+          expect do
             directed_graph.add_edge(new_edge)
-          }.to change{ directed_graph.edges.count }.by 1
+          end.to change { directed_graph.edges.count }.by 1
 
           expect(directed_graph.has_edge?(new_edge)).to be true
         end
@@ -130,9 +128,9 @@ RSpec.describe Abuelo::Graph do
         it 'raises an error if an edge with the same name nodes in the graph exists' do
           new_edge = Abuelo::Edge.new(node_1, node_2, 23)
 
-          expect{
+          expect do
             directed_graph.add_edge(new_edge)
-          }.to raise_error(Abuelo::Exceptions::EdgeAlreadyExistsError)
+          end.to raise_error(Abuelo::Exceptions::EdgeAlreadyExistsError)
         end
       end
 
@@ -207,9 +205,9 @@ RSpec.describe Abuelo::Graph do
         it 'adds the node to the graph' do
           new_node = Abuelo::Node.new('node 4')
 
-          expect{
+          expect do
             undirected_graph.add_node(new_node)
-          }.to change{ undirected_graph.nodes.count }.by 1
+          end.to change { undirected_graph.nodes.count }.by 1
 
           expect(undirected_graph.has_node?(new_node)).to be true
         end
@@ -217,17 +215,17 @@ RSpec.describe Abuelo::Graph do
         it 'raises an error if a node with the same name in the graph exists' do
           new_node = Abuelo::Node.new('node 1')
 
-          expect{
+          expect do
             undirected_graph.add_node(new_node)
-          }.to raise_error(Abuelo::Exceptions::NodeAlreadyExistsError)
+          end.to raise_error(Abuelo::Exceptions::NodeAlreadyExistsError)
         end
 
         it 'sets the graph of the node to itself' do
           new_node = Abuelo::Node.new('node 4')
 
-          expect{
+          expect do
             undirected_graph.add_node(new_node)
-          }.to change{ new_node.graph }.to(undirected_graph)
+          end.to change { new_node.graph }.to(undirected_graph)
         end
       end
 
@@ -253,7 +251,6 @@ RSpec.describe Abuelo::Graph do
       end
     end
 
-
     context 'edges' do
       describe '#edges' do
         it 'returns the edges of the graph' do
@@ -266,9 +263,9 @@ RSpec.describe Abuelo::Graph do
         it 'adds the edge to the graph' do
           new_edge = Abuelo::Edge.new(node_1, node_3, 23)
 
-          expect{
+          expect do
             undirected_graph.add_edge(new_edge)
-          }.to change{ undirected_graph.edges.count }.by 1
+          end.to change { undirected_graph.edges.count }.by 1
 
           expect(undirected_graph.has_edge?(new_edge)).to be true
           expect(undirected_graph.has_edge?(new_edge.symmetric)).to be true
@@ -277,9 +274,9 @@ RSpec.describe Abuelo::Graph do
         it 'raises an error if an edge with the same name nodes in the graph exists' do
           new_edge = Abuelo::Edge.new(node_1, node_2, 23)
 
-          expect{
+          expect do
             undirected_graph.add_edge(new_edge)
-          }.to raise_error(Abuelo::Exceptions::EdgeAlreadyExistsError)
+          end.to raise_error(Abuelo::Exceptions::EdgeAlreadyExistsError)
         end
       end
 
@@ -315,5 +312,4 @@ RSpec.describe Abuelo::Graph do
       end
     end
   end
-
 end

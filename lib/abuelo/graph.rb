@@ -4,18 +4,17 @@ module Abuelo
   #
   # A graph consists of nodes (= vertices, points) and edges (= lines, arcs).
   # The graph may be undirected or directed. For the sake of simplicity Abuelo sticks
-  # with the same vocabulary (nodes, edges) for directed and undirected graphs in 
+  # with the same vocabulary (nodes, edges) for directed and undirected graphs in
   # contrast to theoretical graph theory.
   #
   # @author Dirk Holzapfel <dirk@bitcrowd.net>
   #
   class Graph
-
     #
     # @param [Hash] opts the options to create a Graph with
     # @option opts [Boolean] :directed defines if the graph is directed or undirected.
     #                        (defaults to false == undirected)
-    # 
+    #
     def initialize(opts = {})
       @nodes = {} # @nodes = { node_name => node_object }
       @edges = {} # @edges = { node_object => { node_object => edge }}
@@ -31,26 +30,24 @@ module Abuelo
 
     #
     # @return [Boolean] true if the graph is undirected, false if it is directed
-    # 
+    #
     def undirected?
       !directed?
     end
 
     #
     # @return [Integer] the order of the graph == the number of nodes
-    # 
+    #
     def order
       nodes.count
     end
 
     #
     # @return [Integer] the size of the graph == the number of edges
-    # 
+    #
     def size
       edges.count
     end
-
-
 
     #
     # @return [Array<Abuelo::Node>] list of nodes of the graph
@@ -68,7 +65,7 @@ module Abuelo
     #
     # @raise [Abuelo::Exceptions::NodeAlreadyExistsError] if the node is
     #   already contained in the graph
-    # 
+    #
     def add_node(node)
       raise Abuelo::Exceptions::NodeAlreadyExistsError if has_node?(node)
 
@@ -83,7 +80,7 @@ module Abuelo
     # @param [Abuelo::Node] node
     #
     # @return [Boolean]
-    # 
+    #
     def has_node?(node)
       has_node_with_name?(node.name)
     end
@@ -94,11 +91,10 @@ module Abuelo
     # @param [String] name of the node
     #
     # @return [Boolean]
-    # 
+    #
     def has_node_with_name?(name)
       @nodes[name] ? true : false
     end
-
 
     #
     # @return [Array<Abuelo::Edge>, Array<Array(Abuelo::Edge, Abuelo::Edge)>]
@@ -110,10 +106,10 @@ module Abuelo
     #
     # @example undirected graph
     #  "graph.edges" #=> [[edge_from_node_1_to_node_2, edge_from_node_2_to_node_1]]
-    # 
+    #
     def edges
       edges = @edges.keys.map { |key| @edges[key].values }
-      
+
       if directed?
         edges.flatten
       else
@@ -131,7 +127,7 @@ module Abuelo
     #
     # @raise [Abuelo::Exceptions::EdgeAlreadyExistsError] if the edge is
     #   already contained in the graph
-    # 
+    #
     def add_edge(edge, opts = {})
       raise Abuelo::Exceptions::EdgeAlreadyExistsError if has_edge?(edge)
 
@@ -150,7 +146,7 @@ module Abuelo
     # @param [Abuelo::Edge] edge
     #
     # @return [Boolean]
-    # 
+    #
     def has_edge?(edge)
       find_edge(edge.node_1, edge.node_2) ? true : false
     end
@@ -162,7 +158,7 @@ module Abuelo
     # @param [Abuelo::Node] node_2
     #
     # @return [Abuelo::Edge, nil] the edge if found, otherwise nil
-    # 
+    #
     def find_edge(node_1, node_2)
       @edges[node_1][node_2] if @edges[node_1]
     end
@@ -173,12 +169,11 @@ module Abuelo
     # @param [Abuelo::Node] node <description>
     #
     # @return [Array<Abuelo::Edge>] list of edges that start from the given node
-    # 
+    #
     def edges_for_node(node)
       edges = []
       edges += @edges[node].values.to_a if @edges[node]
       edges
     end
-
   end
 end
