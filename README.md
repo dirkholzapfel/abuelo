@@ -64,6 +64,11 @@ graph.find_edge(node_2, node_1)   # => nil
 graph.edges_for_node(node_2)      # => [edge_2]
 ```
 
+### Dijkstra's algorithm
+```
+Abuelo::SearchAlgorithms::Dijkstra.new(graph).find_path(node_1, node_2) # => some value or Float::Infinity if there is no path from node_1 to node_2
+```
+
 ## Documentation
 [YARD](http://yardoc.org) documentation is available at [rubydoc](http://www.rubydoc.info/gems/abuelo).
 
@@ -71,7 +76,6 @@ graph.edges_for_node(node_2)      # => [edge_2]
 * Implement graph algorithms
   * [Kruskal's algorithm](https://en.wikipedia.org/wiki/Kruskal%27s_algorithm)
   * [Prim's algorithm](https://en.wikipedia.org/wiki/Prim%27s_algorithm)
-  * [Dijkstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
 * Implement visualization of graph
 
 ## Installation
