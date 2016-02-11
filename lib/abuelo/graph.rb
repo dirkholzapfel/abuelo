@@ -18,7 +18,7 @@ module Abuelo
     def initialize(opts = {})
       @nodes = {} # @nodes = { node_name => node_object }
       @edges = {} # @edges = { node_object => { node_object => edge }}
-      @directed = opts[:directed] == true ? true : false
+      @directed = opts[:directed] ? true : false
     end
 
     #
