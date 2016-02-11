@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 RSpec.describe Abuelo::Edge do
-
   let(:node_1) { Abuelo::Node.new('node 1') }
   let(:node_2) { Abuelo::Node.new('node 2') }
 

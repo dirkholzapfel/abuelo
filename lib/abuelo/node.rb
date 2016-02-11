@@ -21,7 +21,7 @@ module Abuelo
     # @param [String] name of the node
     # @param [Object] object to attach to the node.
     #  This is useful on some algorithm implementations.
-    # 
+    #
     def initialize(name, object = nil)
       @name   = name
       @object = object
@@ -29,14 +29,14 @@ module Abuelo
 
     #
     # @return [Array<Abuelo::Edge>] list of edges starting from the node
-    # 
+    #
     def edges
       graph.edges_for_node(self) if graph
     end
 
     #
     # @return [String] human readable representation of node
-    # 
+    #
     def to_s
       @name
     end
@@ -47,9 +47,9 @@ module Abuelo
     # @param [Abuelo::Node] other_node
     #
     # @return [Boolean] true if name is equal
-    # 
+    #
     def ==(other_node)
-      self.name == other_node.name
+      name == other_node.name
     end
   end
 end
