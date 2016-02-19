@@ -19,7 +19,7 @@ module Abuelo
     def initialize(opts = {})
       @nodes = {} # @nodes = { node_name => node_object }
       @edges = {} # @edges = { node_object => { node_object => edge }}
-      @directed = opts[:directed] == true ? true : false
+      @directed = opts.fetch(:directed, false)
     end
 
     #
@@ -50,8 +50,6 @@ module Abuelo
       edges.count
     end
 
-
-
     #
     # @return [Array<Abuelo::Node>] list of nodes of the graph
     #
@@ -74,6 +72,7 @@ module Abuelo
 
       @nodes[node.name] = node
       node.graph = self
+
       self
     end
 
@@ -96,9 +95,8 @@ module Abuelo
     # @return [Boolean]
     # 
     def has_node_with_name?(name)
-      @nodes[name] ? true : false
+      !!@nodes[name]
     end
-
 
     #
     # @return [Array<Abuelo::Edge>, Array<Array(Abuelo::Edge, Abuelo::Edge)>]
@@ -112,12 +110,12 @@ module Abuelo
     #  "graph.edges" #=> [[edge_from_node_1_to_node_2, edge_from_node_2_to_node_1]]
     # 
     def edges
-      edges = @edges.keys.map { |key| @edges[key].values }
-      
+      edges = @edges.keys.flat_map { |key| @edges[key].values }
+
       if directed?
-        edges.flatten
+        edges
       else
-        edges.flatten.each_slice(2).to_a
+        edges.each_slice(2).to_a
       end
     end
 
@@ -141,6 +139,7 @@ module Abuelo
       if undirected? && !opts[:symmetric]
         add_edge(edge.symmetric, symmetric: true)
       end
+
       self
     end
 
@@ -152,7 +151,7 @@ module Abuelo
     # @return [Boolean]
     # 
     def has_edge?(edge)
-      find_edge(edge.node_1, edge.node_2) ? true : false
+      !!find_edge(edge.node_1, edge.node_2)
     end
 
     #
@@ -175,10 +174,7 @@ module Abuelo
     # @return [Array<Abuelo::Edge>] list of edges that start from the given node
     # 
     def edges_for_node(node)
-      edges = []
-      edges += @edges[node].values.to_a if @edges[node]
-      edges
+      (@edges[node] || {}).values
     end
-
   end
 end
