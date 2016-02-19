@@ -174,7 +174,7 @@ module Abuelo
     # @return [Array<Abuelo::Edge>] list of edges that start from the given node
     # 
     def edges_for_node(node)
-      Hash(@edges[node]).values
+      (@edges[node] || {}).values
     end
   end
 end
