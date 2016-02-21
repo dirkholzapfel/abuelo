@@ -5,6 +5,8 @@ Abuelo is a graph theory library written in Ruby that allows you to build a repr
 
 A graph consists of nodes (= vertices, points) and edges (= lines, arcs). The graph may be undirected or directed. For the sake of simplicity Abuelo sticks with the same vocabulary (nodes, edges) for directed and undirected graphs in contrast to theoretical graph theory.
 
+Abuelo supports Ruby >= 2.0.0
+
 ## Examples
 ### Undirected graph
 ```ruby
@@ -89,7 +91,5 @@ gem 'abuelo'
 Dirk Holzapfel
 
 [cachezero.net](http://cachezero.net)
-
-[bitcrowd.net](http://bitcrowd.net)
 
 [Abuelo](http://www.ronabuelopanama.com)
