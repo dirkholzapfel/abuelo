@@ -4,7 +4,6 @@ require 'abuelo/version'
 Gem::Specification.new do |spec|
   spec.name        = 'abuelo'
   spec.version     = Abuelo::VERSION
-  spec.date        = '2016-01-10'
   spec.summary     = 'Abuelo'
   spec.description = 'Abuelo is a graph theory library.'
   spec.authors     = ['Dirk Holzapfel']
