@@ -1,6 +1,7 @@
 # Abuelo
 [![Build Status](https://travis-ci.org/dirkholzapfel/abuelo.svg?branch=master)](https://travis-ci.org/dirkholzapfel/abuelo)
 [![ProjectTalk](http://www.projecttalk.io/images/gh_badge-3e578a9f437f841de7446bab9a49d103.svg?vsn=d)] (http://www.projecttalk.io/boards/dirkholzapfel%2Fabuelo?utm_campaign=gh-badge&utm_medium=badge&utm_source=github)
+[![Join the chat at https://gitter.im/dirkholzapfel/abuelo](https://badges.gitter.im/dirkholzapfel/abuelo.svg)](https://gitter.im/dirkholzapfel/abuelo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Abuelo is a graph theory library written in Ruby that allows you to build a representation of a graph.
 
