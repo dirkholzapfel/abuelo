@@ -7,18 +7,29 @@ module Abuelo
   # with the same vocabulary (nodes, edges) for directed and undirected graphs in
   # contrast to theoretical graph theory.
   #
-  # @author Dirk Holzapfel <dirk@bitcrowd.net>
+  # @author Dirk Holzapfel <cache.zero@mailbox.org>
   #
   class Graph
     #
-    # @param [Hash] opts the options to create a Graph with
+    # @param [Hash] opts the options to create a graph with
     # @option opts [Boolean] :directed defines if the graph is directed or undirected.
     #                        (defaults to false == undirected)
+    # @option opts [String] :adjacency_matrix a representation of the graph in form
+    #                       of an adjacency matrix
+    #
+    # @example Build a graph with the help of an adjacency matrix
+    #  adjacency_matrix = <<-matrix
+    #     0 42  0
+    #    42  0 23
+    #     0 23  0
+    #    matrix
+    #  graph = Abuelo::Graph.new(adjacency_matrix: adjacency_matrix)
     #
     def initialize(opts = {})
       @nodes = {} # @nodes = { node_name => node_object }
       @edges = {} # @edges = { node_object => { node_object => edge }}
       @directed = opts.fetch(:directed, false)
+      init_by_adjacency_matrix(opts[:adjacency_matrix]) if opts[:adjacency_matrix]
     end
 
     #
@@ -94,7 +105,18 @@ module Abuelo
     # @return [Boolean]
     #
     def has_node_with_name?(name)
-      !@nodes[name].nil?
+      !find_node_by_name(name).nil?
+    end
+
+    #
+    # Returns the node with the given name if it is contained in the graph.
+    #
+    # @param [String] name of the node
+    #
+    # @return [Abuelo::Node, nil] the node if found, otherwise nil
+    #
+    def find_node_by_name(name)
+      @nodes[name]
     end
 
     #
@@ -154,7 +176,7 @@ module Abuelo
     end
 
     #
-    # Checks if there is an edge between the two given nodes.
+    # Returns the edge if there is one between the two given nodes.
     #
     # @param [Abuelo::Node] node_1
     # @param [Abuelo::Node] node_2
@@ -174,6 +196,27 @@ module Abuelo
     #
     def edges_for_node(node)
       Hash(@edges[node]).values
+    end
+
+
+    private
+
+    def init_by_adjacency_matrix(adjacency_matrix)
+      nodes = {}
+      1.upto(adjacency_matrix.lines.count) do |i|
+        node = Abuelo::Node.new("node #{i}")
+        nodes[i] = node
+        add_node(node)
+      end
+
+      adjacency_matrix.split(/\r?\n/).each_with_index do |row, row_index|
+        row.split(' ').map(&:to_i).each_with_index do |weight, column_index|
+          if weight != 0
+            edge = Abuelo::Edge.new(nodes[row_index+1], nodes[column_index+1], weight)
+            add_edge(edge, symmetric: true)
+          end
+        end
+      end
     end
   end
 end

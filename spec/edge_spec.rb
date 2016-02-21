@@ -7,8 +7,8 @@ RSpec.describe Abuelo::Edge do
   let(:edge) { described_class.new(node_1, node_2, 3) }
 
   context 'initialization' do
-    it 'sets the weight to 0 if not given' do
-      expect(described_class.new(node_1, node_2).weight).to eq 0
+    it 'sets the weight to 1 if not given' do
+      expect(described_class.new(node_1, node_2).weight).to eq 1
     end
   end
 

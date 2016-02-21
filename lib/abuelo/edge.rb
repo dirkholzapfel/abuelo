@@ -3,7 +3,7 @@ module Abuelo
   # Class Edge provides a representation of an edge.
   # An edge connects two nodes(start-node and end-node) and has a weight.
   #
-  # @author Dirk Holzapfel <dirk@bitcrowd.net>
+  # @author Dirk Holzapfel <cache.zero@mailbox.org>
   #
   class Edge
     # @return [Abuelo::Node] start-node
@@ -22,7 +22,7 @@ module Abuelo
     # @param [Abuelo::Node] node_2 end-node
     # @param [Numeric] weight of the edge
     #
-    def initialize(node_1, node_2, weight = 0)
+    def initialize(node_1, node_2, weight = 1)
       @node_1 = node_1
       @node_2 = node_2
       @weight = weight
@@ -40,7 +40,7 @@ module Abuelo
     #
     # @param [Abuelo::Edge] other
     #
-    # @return [-1, 0, +1 or ni]
+    # @return [-1, 0, +1]
     #
     def <=>(other)
       weight <=> other.weight

@@ -34,6 +34,24 @@ RSpec.describe Abuelo::Node do
     end
   end
 
+  describe '#neighbours' do
+    it 'returns an array with all nodes that are connected via an edge to the node' do
+      graph = Abuelo::Graph.new(directed: true, adjacency_matrix: <<-matrix
+        0 1 1
+        0 0 0
+        0 0 0
+        matrix
+      )
+      node_1 = graph.find_node_by_name('node 1')
+      node_2 = graph.find_node_by_name('node 2')
+      node_3 = graph.find_node_by_name('node 3')
+
+      expect(node_1.neighbours).to match_array [node_2, node_3]
+      expect(node_2.neighbours).to eq []
+      expect(node_3.neighbours).to eq []
+    end
+  end
+
   describe '#to_s' do
     it 'responds with its name' do
       expect(node.to_s).to eq 'node 1'

@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.summary     = 'Abuelo'
   spec.description = 'Abuelo is a graph theory library.'
   spec.authors     = ['Dirk Holzapfel']
-  spec.email       = 'dirk@bitcrowd.net'
+  spec.email       = 'cache.zero@mailbox.org'
   spec.homepage    =
     'http://github.com/dirkholzapfel/abuelo'
   spec.license       = 'MIT'

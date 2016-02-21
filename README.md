@@ -29,12 +29,16 @@ graph.size                        # => 2
 graph.nodes                       # => [node_1, node_2, node_3]
 graph.has_node?(node_1)           # => true
 graph.has_node_with_name?('foo')  # => false
+graph.find_node_by_name('node 1') # => node_1
 graph.edges                       # => [[edge_1, edge_1.symmetric], [edge_2, edge_2.symmetric]]
 graph.has_edge?(edge_1)           # => true
 graph.has_edge?(edge_1.symmetric) # => true
 graph.find_edge(node_1, node_2)   # => edge_1
 graph.find_edge(node_2, node_1)   # => edge_1.symmetric
 graph.edges_for_node(node_2)      # => [edge_1.symmetric, edge_2]
+
+node_1.edges                      # => [edge_1]
+node_1.neighbours                 # => [node_2]
 ```
 
 ### Directed graph
@@ -58,12 +62,66 @@ graph.size                        # => 2
 graph.nodes                       # => [node_1, node_2, node_3]
 graph.has_node?(node_1)           # => true
 graph.has_node_with_name?('foo')  # => false
+graph.find_node_by_name('node 1') # => node_1
 graph.edges                       # => [edge_1, edge_2]
 graph.has_edge?(edge_1)           # => true
 graph.has_edge?(edge_1.symmetric) # => false
 graph.find_edge(node_1, node_2)   # => edge_1
 graph.find_edge(node_2, node_1)   # => nil
 graph.edges_for_node(node_2)      # => [edge_2]
+
+node_1.edges                      # => [edge_1]
+node_1.neighbours                 # => [node_2]
+```
+
+### Initialize a graph with an adjacency matrix
+The above, object oriented way to build graphs is the recommended way to work with this library.
+But you can also build a graph with an [adjacency matrix](https://en.wikipedia.org/wiki/Adjacency_matrix).
+That is a nice shortcut used in some tests and may be a good alternative if you use Abuelo in the console to play around.
+
+A zero indicates there is no edge between the nodes, an Integer indicates that there is an edge with the given weight between the nodes. The nodes are automatically named, starting with "node 1".
+The above example can be built like this:
+
+#### Undirected graphs
+Be aware that you have to provide all symmetric edges in an adjacency matrix for an undirected graph - the lib does not add them automatically as it happens with the `.add_edge` method.
+
+```ruby
+adjacency_matrix = <<-matrix
+   0 42  0
+  42  0 23
+   0 23  0
+  matrix
+
+# The above matrix corresponds to this internal representation
+#
+#          | node 1 | node 2 | node 3 |
+#  ------------------------------------
+#  node 1  | 0      | 42     | 0      |
+#  node 2  | 42     | 0      | 23     |
+#  node 3  | 0      | 23     | 0      |
+
+graph = Abuelo::Graph.new(adjacency_matrix: adjacency_matrix)
+node_1 = graph.find_node_by_name('node 1')
+node_2 = graph.find_node_by_name('node 2')
+graph.find_edge(node_1, node_2).weight # => 42
+```
+#### Directed graphs
+```ruby
+adjacency_matrix = <<-matrix
+  0 42  0
+  0  0 23
+  0  0  0
+  matrix
+
+# The above matrix corresponds to this internal representation
+#
+#          | node 1 | node 2 | node 3 |
+#  ------------------------------------
+#  node 1  | 0      | 42     | 0      |
+#  node 2  | 0      | 0      | 23     |
+#  node 3  | 0      | 0      | 0      |
+
+graph = Abuelo::Graph.new(adjacency_matrix: adjacency_matrix, directed: true)
 ```
 
 ## Documentation
@@ -93,3 +151,8 @@ Dirk Holzapfel
 [cachezero.net](http://cachezero.net)
 
 [Abuelo](http://www.ronabuelopanama.com)
+
+### Contributors
+[dirkholzapfel](https://github.com/dirkholzapfel),
+[mbirman](https://github.com/mbirman),
+[sergey-kintsel](https://github.com/sergey-kintsel)

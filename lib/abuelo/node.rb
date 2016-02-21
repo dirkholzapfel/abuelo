@@ -3,7 +3,7 @@ module Abuelo
   # Class Node provides a representation of a node.
   # A node has a name. Any object may be attached on initialization.
   #
-  # @author Dirk Holzapfel <dirk@bitcrowd.net>
+  # @author Dirk Holzapfel <cache.zero@mailbox.org>
   #
   class Node
     # @return [String] name
@@ -32,6 +32,13 @@ module Abuelo
     #
     def edges
       graph.edges_for_node(self) if graph
+    end
+
+    #
+    # @return [Array<Abuelo::Node>] list of nodes that are adjacent to the node
+    #
+    def neighbours
+      edges.map(&:node_2)
     end
 
     #

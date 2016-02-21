@@ -26,6 +26,36 @@ RSpec.describe Abuelo::Graph do
   end
 
   context 'directed graph' do
+    describe '#initialize' do
+      it 'can be initialized with an adjacency matrix with weights' do
+        adjacency_matrix = <<-matrix
+          0  7  9  0 0 14
+          7  0 10 15 0  0
+          9 10  0 11 0  2
+          0  0 11  0 6  0
+          0  0  0  6 0  9
+          0  0  2  0 9  0
+          matrix
+
+          graph = described_class.new(adjacency_matrix: adjacency_matrix, directed: true)
+          node_1 = graph.find_node_by_name('node 1')
+          node_2 = graph.find_node_by_name('node 2')
+          node_4 = graph.find_node_by_name('node 4')
+
+          expect(graph.order).to eq 6
+          expect(graph.size).to eq 16
+
+          expect(graph.has_node_with_name?('node 1')).to be true
+          expect(graph.has_node_with_name?('node 0')).to be false
+          expect(graph.has_node_with_name?('node 7')).to be false
+
+          expect(graph.find_edge(node_1, node_4)).to be nil
+
+          edge_1_2 = graph.find_edge(node_1, node_2)
+          expect(edge_1_2.weight).to eq 7
+      end
+    end
+
     describe '#undirected?' do
       it 'is false' do
         expect(directed_graph.undirected?).to be false
@@ -170,6 +200,36 @@ RSpec.describe Abuelo::Graph do
   end
 
   context 'undirected graph' do
+    describe '#initialize' do
+      it 'can be initialized with an adjacency matrix with weights' do
+        adjacency_matrix = <<-matrix
+           0  7  9  0 0 14
+           7  0 10 15 0  0
+           9 10  0 11 0  2
+           0 15 11  0 6  0
+           0  0  0  6 0  9
+          14  0  2  0 9  0
+          matrix
+
+          graph = described_class.new(adjacency_matrix: adjacency_matrix)
+          node_1 = graph.find_node_by_name('node 1')
+          node_2 = graph.find_node_by_name('node 2')
+          node_4 = graph.find_node_by_name('node 4')
+
+          expect(graph.order).to eq 6
+          expect(graph.size).to eq 9
+
+          expect(graph.has_node_with_name?('node 1')).to be true
+          expect(graph.has_node_with_name?('node 0')).to be false
+          expect(graph.has_node_with_name?('node 7')).to be false
+
+          expect(graph.find_edge(node_1, node_4)).to be nil
+
+          edge_1_2 = graph.find_edge(node_1, node_2)
+          expect(edge_1_2.weight).to eq 7
+      end
+    end
+
     describe '#undirected?' do
       it 'is true' do
         expect(undirected_graph.undirected?).to be true
