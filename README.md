@@ -148,7 +148,7 @@ gem 'abuelo'
 ```
 
 ## Credits
-Dirk Holzapfel
+Dirk Holzapfel ([@cachezero](https://twitter.com/cachezero))
 
 [cachezero.net](http://cachezero.net)
 
