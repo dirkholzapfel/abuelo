@@ -44,12 +44,12 @@ module Abuelo
     #
     # Equality check.
     #
-    # @param [Abuelo::Node] other_node
+    # @param [Abuelo::Node] other
     #
     # @return [Boolean] true if name is equal
     #
-    def ==(other_node)
-      name == other_node.name
+    def ==(other)
+      name == other.name
     end
   end
 end

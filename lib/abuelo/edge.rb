@@ -38,25 +38,25 @@ module Abuelo
     #
     # Comparison based on weight.
     #
-    # @param [Abuelo::Edge] other_edge
+    # @param [Abuelo::Edge] other
     #
     # @return [-1, 0, +1 or ni]
     #
-    def <=>(other_edge)
-      weight <=> other_edge.weight
+    def <=>(other)
+      weight <=> other.weight
     end
 
     #
     # Equality check.
     #
-    # @param [Abuelo::Edge] other_edge
+    # @param [Abuelo::Edge] other
     #
     # @return [Boolean] true if start-, end-node and weight of both edges are equal
     #
-    def ==(other_edge)
-      node_1 == other_edge.node_1 &&
-        node_2 == other_edge.node_2 &&
-        weight == other_edge.weight
+    def ==(other)
+      node_1 == other.node_1 &&
+        node_2 == other.node_2 &&
+        weight == other.weight
     end
 
     #

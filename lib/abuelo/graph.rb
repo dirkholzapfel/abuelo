@@ -94,7 +94,7 @@ module Abuelo
     # @return [Boolean]
     #
     def has_node_with_name?(name)
-      !!@nodes[name]
+      !@nodes[name].nil?
     end
 
     #
@@ -150,7 +150,7 @@ module Abuelo
     # @return [Boolean]
     #
     def has_edge?(edge)
-      !!find_edge(edge.node_1, edge.node_2)
+      !find_edge(edge.node_1, edge.node_2).nil?
     end
 
     #
@@ -173,7 +173,7 @@ module Abuelo
     # @return [Array<Abuelo::Edge>] list of edges that start from the given node
     #
     def edges_for_node(node)
-      (@edges[node] || {}).values
+      Hash(@edges[node]).values
     end
   end
 end
