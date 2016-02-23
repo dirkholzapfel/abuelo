@@ -127,7 +127,7 @@ graph = Abuelo::Graph.new(adjacency_matrix: adjacency_matrix, directed: true)
 ```
 
 ## Documentation
-[YARD](http://yardoc.org) documentation is available at [rubydoc](http://www.rubydoc.info/gems/abuelo).
+[YARD](http://yardoc.org) documentation is available at [rubydoc](http://www.rubydoc.info/github/dirkholzapfel/abuelo).
 
 ## Future
 * Implement graph algorithms
