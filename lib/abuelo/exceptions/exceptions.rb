@@ -5,5 +5,8 @@ module Abuelo
 
     class EdgeAlreadyExistsError < StandardError
     end
+
+    class NoNodeError < StandardError
+    end
   end
 end

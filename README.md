@@ -89,9 +89,9 @@ Be aware that you have to provide all symmetric edges in an adjacency matrix for
 
 ```ruby
 adjacency_matrix = <<-matrix
-   0 42  0
-  42  0 23
-   0 23  0
+  0  42 0
+  42 0  23
+  0  23 0
   matrix
 
 # The above matrix corresponds to this internal representation
@@ -110,9 +110,9 @@ graph.find_edge(node_1, node_2).weight # => 42
 #### Directed graphs
 ```ruby
 adjacency_matrix = <<-matrix
-  0 42  0
-  0  0 23
-  0  0  0
+  0 42 0
+  0 0  23
+  0 0  0
   matrix
 
 # The above matrix corresponds to this internal representation
@@ -125,6 +125,30 @@ adjacency_matrix = <<-matrix
 
 graph = Abuelo::Graph.new(adjacency_matrix: adjacency_matrix, directed: true)
 ```
+## Algorithms
+### Dijkstra
+This is the example from https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+
+<a title="By Ibmua (Work by uploader.) [Public domain], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File%3ADijkstra_Animation.gif"><img width="256" alt="Dijkstra Animation" src="https://upload.wikimedia.org/wikipedia/commons/5/57/Dijkstra_Animation.gif"/></a>
+
+```ruby
+adjacency_matrix = <<-matrix
+  0  7  9  0  0 14
+  7  0  10 15 0 0
+  9  10 0  11 0 2
+  0  15 11 0  6 0
+  0  0  0  6  0 9
+  14 0  2  0  9 0
+matrix
+
+graph = Abuelo::Graph.new(adjacency_matrix: adjacency_matrix)
+start_node = graph.find_node_by_name('node 1')
+node_5 = graph.find_node_by_name('node 5')
+
+dijkstra = Abuelo::Algorithms::Dijkstra.new(graph, start_node)
+dijkstra.shortest_distance_to(node_5) # => 20
+dijkstra.shortest_path_to(node_5).map(&:to_s) # => ['node 1', 'node 3', 'node 6', 'node 5']
+```
 
 ## Documentation
 [YARD](http://yardoc.org) documentation is available at [rubydoc](http://www.rubydoc.info/github/dirkholzapfel/abuelo).
@@ -133,8 +157,8 @@ graph = Abuelo::Graph.new(adjacency_matrix: adjacency_matrix, directed: true)
 * Implement graph algorithms
   * [Kruskal's algorithm](https://en.wikipedia.org/wiki/Kruskal%27s_algorithm)
   * [Prim's algorithm](https://en.wikipedia.org/wiki/Prim%27s_algorithm)
-  * [Dijkstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
 * Implement visualization of graph
+* Add priority queue to Dijkstra's algorithm implementation
 
 ## Installation
 Abuelo is a gem which you can install with:

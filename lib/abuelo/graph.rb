@@ -1,6 +1,6 @@
 module Abuelo
   #
-  # Class Graph provides a representation of a directed graph.
+  # Class Graph provides a representation of a graph.
   #
   # A graph consists of nodes (= vertices, points) and edges (= lines, arcs).
   # The graph may be undirected or directed. For the sake of simplicity Abuelo sticks

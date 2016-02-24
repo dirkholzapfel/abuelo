@@ -1,4 +1,5 @@
 require 'abuelo/graph'
 require 'abuelo/node'
 require 'abuelo/edge'
+require 'abuelo/algorithms/dijkstra'
 require 'abuelo/exceptions/exceptions'
