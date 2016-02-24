@@ -1,3 +1,6 @@
+# 0.1.0 - 2016-02-24
+* implemented Dijkstra's algorithm
+
 # 0.0.2 - 2016-02-21
 * new possibility to build a graph: adjacency matrix
 * added code of conduct
